@@ -32,6 +32,7 @@ public class Homework4 {
         System.out.println("___________________");
 
         System.out.println(mail.replace(".", "_"));
+        System.out.println("___________________");
 
 
 
