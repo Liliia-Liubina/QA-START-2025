@@ -36,6 +36,7 @@ public class Homework4 {
         String newEmail = "my_home_mail@gmail_com";
 
         System.out.println(newEmail.replace("gmail_com", "gmail.com"));
+        System.out.println("___________________");
 
 
 
