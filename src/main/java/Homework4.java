@@ -1,8 +1,13 @@
 public class Homework4 {
     /*TODO: перевірити чи мейл my.home.mail@gmail.com підпадає під правила:
-    - закінчується на gmail.com
-    - не містить більше одного символу @
-    * - замінити всі крапки на _ окрім останньої
+    1. закінчується на gmail.com
+    2. не містить більше одного символу @
+    3. замінити всі крапки на _ окрім останньої
+    - розбити рядок посимвольно;
+    - остання пропущена крапка - false;
+    - присвоїти змінну для останньої крапки;
+    - запустити цикл посимвольного перебору;
+    - вивести результат в нову строку
 
  */
     public static void main(String[] args) {
@@ -23,20 +28,31 @@ public class Homework4 {
 
         int count = 0;
         for (int i = 0; i < mail.length(); i++) {
-            if (mail.charAt(i) == '@'){
+            if (mail.charAt(i) == '@') {
                 System.out.println("@ found at: " + i);
-                count ++;
-                }
+                count++;
+            }
         }
         System.out.println("The count is:" + count);
         System.out.println("___________________");
 
-        System.out.println(mail.replace(".", "_"));
+        char [] letters = mail.toCharArray();
+        boolean lastDotSkipped = false;
 
-        String newEmail = "my_home_mail@gmail_com";
+        int lastDotIndex = mail.lastIndexOf('.');
 
-        System.out.println(newEmail.replace("gmail_com", "gmail.com"));
-        System.out.println("___________________");
+        for (int j = 0; j<letters.length; j++) {
+            if (letters [j] == '.' && j != lastDotIndex) {
+                letters[j] = '_';
+                lastDotSkipped = false;
+            } else if (letters [j] == '.' && j == lastDotIndex) {
+                lastDotSkipped = true;
+            }
+        }
+        String newMail = new String (letters);
+        System.out.println(newMail);
+    }
+
 
 
 
@@ -137,4 +153,5 @@ public class Homework4 {
 
     }
 
-}
+
+
