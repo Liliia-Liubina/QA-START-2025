@@ -32,6 +32,10 @@ public class Car {
         System.out.println(color + " car is refueling " + amount + " liters of " + fuelType);
     }
 
+    public void direction() {
+        System.out.println(color + "car is going to the rest camp");
+    }
+
     public int getModelLength(){
         if (model == null) {
             return 0;
