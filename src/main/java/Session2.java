@@ -85,5 +85,11 @@ public class Session2 {
 
         System.out.println(hotelRoomNames[0]);
         System.out.println(hotelRoomNames[2]);
-    }
+        System.out.println("___________");
+
+
+
+
+        }
 }
+

@@ -34,8 +34,8 @@ public class Session6 {
         aliceCar.refuel(25, "diesel");
         bobCar.refuel(15, "gasoline");
 
-//        System.out.println(aliceCar.model);
-//        System.out.println(bobCar.model);
+        System.out.println(aliceCar.model);
+        System.out.println(bobCar.model);
 //
 //        String s1 = "some string";
 //        String s2 = "";
