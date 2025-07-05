@@ -7,16 +7,26 @@ package org.prog.session3.poly;
 public class Mazda implements ICar {
 
     public void driveTo(String destination) {
+
         driveTo(destination, "here and now");
     }
 
     public void driveTo(String destination, String from) {
+
         driveTo(destination, from, "nowhere");
     }
 
     public void driveTo(String destination, String from, String stoppingAt) {
-        System.out.println("Mazada drives from " + from + " to " + destination);
-        System.out.println("Mazada stopping at " + stoppingAt);
+        driveTo(destination, from, stoppingAt,0);
+    }
+    public void driveTo(String destination, String from, String stoppingAt, int passengers) {
+        driveTo(destination, from, stoppingAt, passengers, 0);
+
+    }
+    public void driveTo(String destination, String from, String stoppingAt, int passengers, int payForGas) {
+        System.out.println("Mazda drives from " + from + " to " + destination + " with " + passengers +
+                " passengers, which pay " + payForGas + " $ for gas");
+        System.out.println("Mazda stopping at " + stoppingAt);
     }
 
     public void manualGearSwitch(int gear) {
