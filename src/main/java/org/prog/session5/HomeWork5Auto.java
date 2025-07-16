@@ -10,45 +10,42 @@ public class HomeWork5Auto {
 //TODO: write Map with car owners as keys and owned cars as values
 //TODO: assign each car random color using randomColor() from this class
 
-        Map<String, List<String>> ownerCarsMap = new HashMap<>();
-        ownerCarsMap.put("Adam", new ArrayList<>());
-        ownerCarsMap.put("Amanda", new ArrayList<>());
-        ownerCarsMap.put("Sam", new ArrayList<>());
 
-        ownerCarsMap.get("Adam").add("BMW");
-        ownerCarsMap.get("Adam").add("Toyota");
-        ownerCarsMap.get("Adam").add("Audy");
-
-        ownerCarsMap.get("Amanda").add("BMW");
-        ownerCarsMap.get("Amanda").add("Toyota");
-        ownerCarsMap.get("Amanda").add("Audy");
-
-        ownerCarsMap.get("Sam").add("BMW");
-        ownerCarsMap.get("Sam").add("Toyota");
-        ownerCarsMap.get("Sam").add("Audy");
+        Map<String, List<NewCar>> ownedCars = new HashMap<>();
+        ownedCars.put("Adam", new ArrayList<>());
+        ownedCars.put("Amanda", new ArrayList<>());
+        ownedCars.put("Sam", new ArrayList<>());
 
 
+        ownedCars.get("Adam").add(new NewCar("BMW", randomColor()));
+        ownedCars.get("Adam").add(new NewCar("Toyota", randomColor()));
+        ownedCars.get("Adam").add(new NewCar("Audy", randomColor()));
+
+        ownedCars.get("Amanda").add(new NewCar("Mazda", randomColor()));
+        ownedCars.get("Amanda").add(new NewCar("BMW",randomColor()));
+        ownedCars.get("Amanda").add(new NewCar("Toyota", randomColor()));
+
+        ownedCars.get("Sam").add(new NewCar("Opel", randomColor()));
+        ownedCars.get("Sam").add(new NewCar("Mitsubishi", randomColor()));
+        ownedCars.get("Sam").add(new NewCar("BMW", randomColor()));
 
 
-        List<String> carList = ownerCarsMap.get("Adam");
-        for (String car : carList) {
-            String color = randomColor();
-            System.out.println("Adam owners " + color + " " + car);
+        List<NewCar> carList = ownedCars.get("Adam");
+        for (NewCar car : carList) {
+            System.out.println("Adam owns " + car);
         }
+        System.out.println("________________________");
 
-        List<String> carListAmanda = ownerCarsMap.get("Amanda");
-        for (String carAmanda : carListAmanda) {
-            String colorAmanda = randomColor();
-            System.out.println("Amanda owners " + colorAmanda + " " + carAmanda);
+        List<NewCar> carListAmanda = ownedCars.get("Amanda");
+        for (NewCar carAmanda : carListAmanda) {
+           System.out.println("Amanda owns " + carAmanda);
         }
+        System.out.println("________________________");
 
-        List<String> carListSam = ownerCarsMap.get("Sam");
-        for (String carSam : carListSam) {
-            String colorSam = randomColor();
-            System.out.println("Sam owners " + colorSam + " " + carSam);
+        List<NewCar> carListSam = ownedCars.get("Sam");
+        for (NewCar carSam : carListSam) {
+            System.out.println("Sam owns " + carSam);
         }
-
-
 
 
 
