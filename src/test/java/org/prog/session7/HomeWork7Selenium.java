@@ -22,7 +22,7 @@ public class HomeWork7Selenium {
     public void myAlloTest() {
         driver.get("https://allo.ua/");
 
-        WebElement search = driver.findElement(By.cssSelector("input.search-form__input"));
+        WebElement search = driver.findElement(By.xpath("//input[@id='search-form__input']"));
         search.sendKeys("Iphone");
         search.sendKeys(Keys.ENTER);
     }
