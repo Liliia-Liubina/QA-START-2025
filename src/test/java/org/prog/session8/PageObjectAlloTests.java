@@ -23,9 +23,10 @@ public class PageObjectAlloTests {
     @Test
     public void alloTest() {
         alloPage.loadPage();
-        alloPage.searchForElement();
-        boolean priceContainsHryvnia = alloPage.isPriceWithHryvniaSymbolPresent();
-        Assert.assertTrue(priceContainsHryvnia, "₴ not found!");
+        alloPage.searchForElement("IPhone");
+        String expectedCurrency = "₴";
+        boolean priceContainsCurrency = alloPage.isPriceWithCurrencyPresent(expectedCurrency);
+        Assert.assertTrue(priceContainsCurrency, expectedCurrency + " not found!");
     }
 
     @AfterSuite

@@ -1,9 +1,6 @@
 package org.prog.session8.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,15 +21,22 @@ public class AlloPage {
         }
 
 
-        public void searchForElement() {
-            WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-form__input']")));
-            search.sendKeys("Iphone");
+        public void searchForElement(String query) {
+            WebElement search = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                    xpath("//input[@id='search-form__input']")));
+            search.sendKeys(query);
             search.sendKeys(Keys.ENTER);
         }
 
-        public boolean isPriceWithHryvniaSymbolPresent() {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='currency' and contains(text(), '₴')]")));
-            return true;
+        public boolean isPriceWithCurrencyPresent(String currencySymbol) {
+            try {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//span[@class='currency' and contains(text(), '₴')]")));
+
+                return true;
+            } catch (TimeoutException e) {
+                return false;
+            }
         }
 
     }
