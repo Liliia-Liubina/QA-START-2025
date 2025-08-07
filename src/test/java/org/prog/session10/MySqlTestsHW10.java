@@ -34,8 +34,8 @@ public class MySqlTestsHW10 {
     @Test
     public void testWriteToDB() throws SQLException, ClassNotFoundException {
         Statement statement = connection.createStatement();
-        statement.execute("INSERT INTO Persons (FirstName, LastName, Gender, Title, Nat, City, Street, House) " +
-                "VALUES ('Leo', 'Lee', 'male', 'Mr', 'US', 'Canada', '5th Avenue', '1')");
+        statement.execute("INSERT INTO Persons (FirstName, LastName, Gender, Title, Nat, City, Street, Number) " +
+                "VALUES ('Mike', 'Born', 'male', 'Mr', 'US', 'Canada', 'Green', '1')");
     }
 
 
@@ -49,14 +49,14 @@ public class MySqlTestsHW10 {
             System.out.print(resultSet.getString("Gender") + " ");
             System.out.print(resultSet.getString("City") + " ");
             System.out.print(resultSet.getString("Street") + " ");
-            System.out.println(resultSet.getString("House") + " ");
+            System.out.println(resultSet.getString("Number") + " ");
         }
     }
 
 
     @Test
     public void testWriteToDBFromAPI() throws SQLException, ClassNotFoundException {
-        Results1Dto results1Dto = getUsers(3);
+        Results1Dto results1Dto = getUsers(2);
         List<Person1Dto> person1Dtos = results1Dto.getResults();
 //            Statement statement = connection.createStatement();
         PreparedStatement preparedStatement = connection.prepareStatement(
@@ -80,6 +80,7 @@ public class MySqlTestsHW10 {
                 preparedStatement.setString(8, dto.getLocation().getStreet().getNumber());
                 preparedStatement.execute();
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("Error inserting person: " + dto);
             }
         }
