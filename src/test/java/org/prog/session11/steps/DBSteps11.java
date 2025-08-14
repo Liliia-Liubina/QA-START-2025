@@ -1,6 +1,7 @@
 package org.prog.session11.steps;
 
 import io.cucumber.java.en.Given;
+import org.prog.session11.DataHolder11;
 import org.prog.session9.Person1Dto;
 import org.prog.session9.Results1Dto;
 import org.testng.Assert;
@@ -11,12 +12,13 @@ import java.util.List;
 public class DBSteps11 {
 
     public static Connection connection;
-    public static String randomPersonName;
 
-    @Given("I store those people in database")
-    public void storeMyPersonTOBD() throws SQLException {
+    @Given("I store my {string} in database")
+    public void storeMyPersonTOBD(String alias) throws SQLException {
 
-        List<Person1Dto> person1Dtos = RestSteps11.response.getResults();
+        Results1Dto results1Dto = (Results1Dto) DataHolder11.MYDATA.get(alias);
+        List<Person1Dto> person1Dtos = results1Dto.getResults();
+
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "INSERT INTO Persons (FirstName, LastName, Gender, Title, Nat, Street, City, Number) " +
                         "VALUES (?,?,?,?,?,?,?,?)"
@@ -26,17 +28,18 @@ public class DBSteps11 {
 
     }
 
-    @Given("I pick a single random person from DB")
-    public void pickMyRandomPersonFromDB() throws SQLException {
+    @Given("I pick a some random person from DB as {string}")
+    public void pickMyRandomPersonFromDB(String alias) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM Persons ORDER BY RAND() LIMIT 1");
         if (resultSet.next()) {
-            randomPersonName = resultSet.getString("FirstName") + " " +
+            DataHolder11.MYDATA.put(alias,
+                    resultSet.getString("FirstName") + " " +
                     resultSet.getString("LastName") + " " +
                     resultSet.getString("Gender") + " " +
                     resultSet.getString("City") + " " +
                     resultSet.getString("Street") + " " +
-                    resultSet.getString("Number");
+                    resultSet.getString("Number"));
         } else {
             Assert.fail("No records found");
 

@@ -3,14 +3,15 @@ package org.prog.session11.steps;
 import io.cucumber.java.en.Given;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.prog.session11.DataHolder11;
 import org.prog.session9.Results1Dto;
 
 public class RestSteps11 {
 
     public static Results1Dto response;
 
-    @Given("request {int} random people from API")
-    public void requestMyPersonFromAPI(int amount) {
+    @Given("request some {int} random people from API as {string}")
+    public void requestMyPersonFromAPI(int amount, String alias) {
         Response response = RestAssured.given()
                 .baseUri("https://randomuser.me/")
                 .basePath("api/")
@@ -19,7 +20,8 @@ public class RestSteps11 {
                 .queryParam("noinfo")
                 .get();
         response.prettyPrint();
-        RestSteps11.response = response.as(Results1Dto.class);
+        DataHolder11.MYDATA.put(alias, response.as(Results1Dto.class));
+
 
 
     }

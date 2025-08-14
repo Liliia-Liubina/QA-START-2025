@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.prog.session11.DataHolder11;
 import org.prog.session8.page.GooglePage;
 import org.testng.Assert;
 
@@ -26,15 +27,20 @@ public class WebSteps11 {
 
     }
 
-    @When("I set search to random persons name")
-    public void iSetSearchToMyRandomPersonName() {
-        googlePage.setSearchFieldValue(DBSteps11.randomPersonName);
+    @When("I am setting search to {string}")
+    public void iSetSearchToMyRandomPersonName(String alias) {
+        if (DataHolder11.MYDATA.containsKey(alias)) {
+            googlePage.setSearchFieldValue((String) DataHolder11.MYDATA.get(alias));
+        } else {
+            googlePage.setSearchFieldValue(alias);
+        }
     }
 
-    @Then("Search field contains random persons name")
-    public void searchFieldContainsMyRandomPersonsName() {
-        Assert.assertEquals(googlePage.getSearchFieldValue(),
-                DBSteps11.randomPersonName,
+    @Then("My search field contains {string}")
+    public void searchFieldContainsMyRandomPersonsName(String alias) {
+        Assert.assertEquals(
+                googlePage.getSearchFieldValue(),
+                DataHolder11.MYDATA.get(alias),
                 "Search field expected to contain my random persons name");
     }
 
