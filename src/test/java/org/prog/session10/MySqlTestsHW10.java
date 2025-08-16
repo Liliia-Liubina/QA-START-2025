@@ -87,15 +87,15 @@ public class MySqlTestsHW10 {
 
 
         private Results1Dto getUsers (int amount){
-            Response respones = RestAssured.given()
+            Response response = RestAssured.given()
                     .baseUri("https://randomuser.me/")
                     .basePath("api/")
                     .queryParam("inc", "gender,name,location,nat")
                     .queryParam("results", amount)
                     .queryParam("noinfo")
                     .get();
-            respones.prettyPrint();
-            return respones.as(Results1Dto.class);
+            response.prettyPrint();
+            return response.as(Results1Dto.class);
         }
 
 //    @Test
