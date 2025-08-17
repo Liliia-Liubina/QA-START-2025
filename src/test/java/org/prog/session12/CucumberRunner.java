@@ -46,6 +46,7 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
         }
     }
 
+
     private static ChromeOptions remoteChrome() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setAcceptInsecureCerts(true);
